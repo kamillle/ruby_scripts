@@ -4,12 +4,10 @@ require 'pry-byebug'
 # 下記のフォーマットに整形する
 # `# @param param_name [type] description`
 
-under_app_dir = Dir.glob('./app/*/**/**')
+# rubyのファイルのみを対象にする
+under_app_dir_filenames = Dir.glob('./app/*/**/**.rb')
 
-under_app_dir.each do |name|
-  # rubyのファイル以外は対象外
-  next unless name.include?('.rb')
-
+under_app_dir_filenames.each do |name|
   need_changed = false
 
   File.open(name, 'r') do |file|
